@@ -1,57 +1,53 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Trivia AFTE 2026</title><style>*{box-sizing:border-box;margin:0;padding:0;font-family:system-ui}body{min-height:100vh;padding:10px;transition:.3s}.header-top{text-align:center;color:#FFD60A;padding:10px}.main-card{background:white;border-radius:22px;border:4px solid #FFD60A;padding:14px;max-width:500px;margin:0 auto}.info-bar{display:flex;justify-content:space-between;font-size:12px;font-weight:800;color:#4C1D95}.q-header{display:flex;justify-content:space-between;padding:9px 14px;border-radius:12px;font-weight:900;font-size:12px;color:white;margin-top:6px}.q-text{background:#F8F7FF;border-radius:14px;padding:14px;text-align:center;font-weight:700;font-size:15px;margin:12px 0;border:2px solid #EDE9FE;min-height:70px;display:flex;align-items:center;justify-content:center}.options{display:grid;grid-template-columns:1fr 1fr;gap:10px}.options button{background:#F5F3FF;border:2px solid #7C3AED;border-radius:999px;padding:12px;font-weight:800;color:#4C1D95;cursor:pointer;min-height:52px}.options button.correct{background:#22C55E!important;color:white;border-color:#22C55E}.options button.wrong{background:#EF4444!important;color:white;border-color:#EF4444}.btn-next{width:100%;margin-top:14px;background:#FFD60A;color:#4C1D95;border:none;padding:13px;border-radius:999px;font-weight:900;display:none}.m-Matematica{background:#7C3AED}.m-Ciencias{background:#16A34A}.m-Sociales{background:#D97706}.m-Artistica{background:#DB2777}.m-Lengua{background:#2563EB}.bg-Matematica{background:#2E1065}.bg-Ciencias{background:#052E16}.bg-Sociales{background:#431407}.bg-Artistica{background:#500724}.bg-Lengua{background:#1E1B4B}.progress-dots{display:flex;gap:4px;justify-content:center;margin-top:10px;flex-wrap:wrap}.dot{width:7px;height:7px;border-radius:50%;background:#DDD6FE}.dot.active{background:#FFD60A}.dot.done{background:#7C3AED}.footer{text-align:center;margin-top:14px;color:#A5B4FC;font-size:11px}</style></head><body id="bodyBg" class="bg-Matematica"><div class="header-top"><h1>⭐ TRIVIA AFTE 2026</h1><p>50 preguntas · EES N°15</p></div><div class="main-card"><div class="info-bar"><span id="materiaLabel">.</span><span>⏱ <span id="time">25</span>s</span><span id="progress">1/50</span></div><div class="q-header m-Matematica" id="qHeader"><span id="qTitle">.</span><span>25s</span></div><div class="q-text" id="qText">.</div><div class="options" id="options"></div><button class="btn-next" id="nextBtn" onclick="nextQ()">Siguiente →</button><div class="progress-dots" id="dots"></div></div><div class="footer">Muestra Anual AFTE 2026</div><script>const preguntas=[{materia:"Matemática", q:"Luna tiene 3 remeras y 2 pantalones. ¿De cuántas maneras diferentes puede combinar una remera con un pantalón?", opts:["5 combinaciones.","6 combinaciones.","8 combinaciones.","9 combinaciones."], correct:1},
-{materia:"Matemática", q:"Cuatro amigos compraron 2 pizzas de 8 porciones cada una. Si las reparten por igual, ¿cuántas porciones recibe cada uno?", opts:["4 porciones.","2 porciones.","6 porciones.","8 porciones."], correct:0},
-{materia:"Matemática", q:"En el cine del barrio, la película comienza a las 18:00. Observá el reloj que marca esa hora: 6:00. ¿Qué tipo de ángulo forman las dos agujas del reloj?", opts:["Ángulo agudo.","Ángulo recto.","Ángulo obtuso.","Ángulo llano."], correct:3},
-{materia:"Matemática", q:"Lucio mira un reloj que marca las 10:10. ¿Cuántos grados hay entre las marcas del 10 y del 2?", opts:["60°","90°","120°","180°"], correct:2},
-{materia:"Matemática", q:"Una campera cuesta $48.000, pero tiene un 25% de descuento. ¿Cuánto cuesta la campera con el descuento?", opts:["$24.000","$40.000","$12.000","$36.000"], correct:3},
-{materia:"Matemática", q:"Si seguimos multiplicando números consecutivos, ¿qué número viene después?", opts:["36","42","40","48"], correct:1},
-{materia:"Matemática", q:"¿Te alcanza para comprar todo? ¿Cuánto dinero te queda?", opts:["Sí, $2.800","No, faltan $800","Sí, $3.800","Sí, $4.800"], correct:2},
-{materia:"Matemática", q:"Un jardín rectangular mide 8 metros de largo y 5 metros de ancho. ¿Cuántos metros de cerco necesitamos para rodearlo completamente?", opts:["13 metros","26 metros","40 metros","16 metros"], correct:1},
-{materia:"Matemática", q:"El jardín mide 8 metros de largo y 5 metros de ancho. ¿Cuántos metros cuadrados de césped necesitamos para cubrirlo por completo?", opts:["26 m²","13 m²","40 m²","80 m²"], correct:2},
-{materia:"Matemática", q:"Un aventurero está en el punto (1, 1) y debe llegar al tesoro en (5, 4). ¿Cuántos casilleros debe avanzar hacia la derecha y cuántos hacia arriba?", opts:["3 derecha y 4 arriba","5 derecha y 4 arriba","4 derecha y 3 arriba","4 derecha y 5 arriba"], correct:2},
-{materia:"Ciencias Naturales", q:"¿Cuál de estos elementos NO es materia?", opts:["La piedra.","El agua.","El aire.","La luz."], correct:3},
-{materia:"Ciencias Naturales", q:"¿Cuál de las siguientes afirmaciones es correcta?", opts:["Las tres muestras son mezclas.","El agua con sal es una mezcla homogénea y la ensalada, heterogénea.","El agua pura es una mezcla heterogénea.","La ensalada es una mezcla homogénea."], correct:1},
-{materia:"Ciencias Naturales", q:"¿Qué es la fotosíntesis?", opts:["El proceso por el cual las plantas fabrican su alimento utilizando luz solar, agua y dióxido de carbono.","La forma en que las plantas respiran oxígeno durante la noche.","El proceso por el cual las plantas absorben solo agua del suelo.","La transformación del oxígeno en dióxido de carbono."], correct:0},
-{materia:"Ciencias Naturales", q:"Aunque no se mueve, ¿tiene energía?", opts:["No, porque está quieta.","Sí, tiene energía potencial gravitatoria.","Sí, tiene energía eléctrica.","No, porque todavía no bajó."], correct:1},
-{materia:"Ciencias Naturales", q:"¿Qué tienen en común un perro, una planta, una hormiga y una persona?", opts:["Todos pueden caminar.","Todos tienen el mismo tamaño.","Todos están formados por células.","Todos se alimentan de plantas."], correct:2},
-{materia:"Ciencias Naturales", q:"¿Qué intenta mantener estable nuestro cuerpo cuando transpiramos o tiritamos?", opts:["La temperatura corporal.","La estatura.","El peso corporal.","La cantidad de huesos."], correct:0},
-{materia:"Ciencias Naturales", q:"¿Por qué decimos que los seres humanos somos sistemas abiertos?", opts:["Porque intercambiamos materia y energía con el ambiente.","Porque no tenemos paredes que nos rodeen.","Porque podemos caminar en distintos ambientes.","Porque estamos formados por muchos órganos."], correct:0},
-{materia:"Ciencias Naturales", q:"¿De quién estamos hablando?", opts:["Una bacteria.","Un hongo.","Un virus.","Un protozoo."], correct:2},
-{materia:"Ciencias Naturales", q:"Un burro y una yegua pueden tener una cría llamada mula, que generalmente es estéril. ¿Qué nos indica esto sobre el burro y el caballo?", opts:["Que pertenecen a la misma especie.","Que son animales idénticos.","Que pertenecen a especies diferentes.","Que todas sus crías pueden reproducirse."], correct:2},
-{materia:"Ciencias Naturales", q:"¿Por qué la reproducción se considera una función vital si podemos vivir sin reproducirnos?", opts:["Porque todas las personas deben tener hijos.","Porque permite que una persona viva más años.","Porque es necesaria para la continuidad de las especies.","Porque impide que los seres vivos envejezcan."], correct:2},{materia:"Ciencias Sociales", q:"¿Para qué nos sirve estudiar Ciencias Sociales en la actualidad?", opts:["Para memorizar fechas sin relacionarlas con el presente.","Para conocer solamente la vida de personajes famosos.","Para comprender por qué ocurren ciertos cambios en la sociedad.","Para aprender únicamente cómo eran las sociedades antiguas."], correct:2},
-{materia:"Ciencias Sociales", q:"¿A quiénes consideramos sujetos sociales?", opts:["Solo a quienes tienen poder o dinero.","A todas las personas y grupos que participan en la vida social.","A quienes viven en otros países.","A quienes estudian Ciencias Sociales."], correct:1},
-{materia:"Ciencias Sociales", q:"¿Qué nos dice la pirámide sobre la población?", opts:["Que hay muchos nacimientos y muchas personas mayores.","Que la mayoría de la población es adulta.","Que hay pocos niños y muchos adultos mayores.","Que hay muchos adultos jóvenes y pocos niños."], correct:1},
-{materia:"Ciencias Sociales", q:"¿Cómo se lee este mapa? El punto rojo indica Buenos Aires y el azul es otro país de América del Sur.", opts:["El punto azul está al noroeste de Buenos Aires.","El punto azul está al noreste.","El punto azul está al sudoeste.","El punto azul está al sudeste."], correct:0},
-{materia:"Ciencias Sociales", q:"¿Qué tienen en común una fábrica, una granja y un hospital?", opts:["Son todos lugares donde se trabaja.","Son todos espacios de recreación.","Son todos tipos de viviendas.","Son todos ambientes naturales sin intervención humana."], correct:0},
-{materia:"Ciencias Sociales", q:"¿Qué significa que el ambiente es un sistema?", opts:["Que solo hay elementos naturales.","Que los elementos naturales y sociales están relacionados.","Que solo hay elementos sociales.","Que los elementos no se relacionan entre sí."], correct:1},
-{materia:"Ciencias Sociales", q:"¿Cuál de estos problemas es un problema ambiental?", opts:["La contaminación del aire por fábricas.","La organización de un partido de fútbol.","La elección de un presidente.","La invención de un nuevo juego."], correct:0},
-{materia:"Ciencias Sociales", q:"¿Qué diferencia hay entre tiempo atmosférico y clima?", opts:["Son lo mismo.","El tiempo es lo que pasa en un momento, el clima es el promedio de muchos años.","El clima cambia cada hora.","El tiempo atmosférico es lo que pasa en muchos años."], correct:1},
-{materia:"Ciencias Sociales", q:"¿Por qué el trabajo es importante en nuestra sociedad?", opts:["Porque solo sirve para ganar dinero.","Porque organiza la vida de las personas y produce lo que necesitamos.","Porque solo trabajan los adultos.","Porque no tiene relación con el ambiente."], correct:1},
-{materia:"Ciencias Sociales", q:"¿Qué es una norma?", opts:["Una regla que organiza la convivencia.","Una opinión personal.","Una canción.","Un juego."], correct:0},
-{materia:"Artística", q:"¿Qué es una instalación artística?", opts:["Una pintura colgada en la pared.","Una obra que ocupa un espacio y el espectador puede recorrerla.","Una foto en un libro.","Una canción grabada."], correct:1},
-{materia:"Artística", q:"¿Qué es el punto de fuga en dibujo?", opts:["El lugar donde se esconden los colores.","El punto donde las líneas parecen juntarse a lo lejos.","El lugar donde se firma la obra.","El punto donde se mezclan todos los materiales."], correct:1},
-{materia:"Artística", q:"¿Qué es el ritmo en la música?", opts:["La letra de la canción.","La organización de los sonidos en el tiempo.","El volumen alto.","El instrumento que se usa."], correct:1},
-{materia:"Artística", q:"¿Qué diferencia hay entre color primario y secundario?", opts:["No hay diferencia.","Primarios no se pueden hacer mezclando, secundarios sí.","Secundarios no se pueden hacer.","Todos son primarios."], correct:1},
-{materia:"Artística", q:"¿Qué es una coreografía?", opts:["Una canción cantada.","Una secuencia organizada de movimientos de danza.","Un dibujo en el piso.","Un instrumento musical."], correct:1},
-{materia:"Artística", q:"¿Para qué sirve el boceto?", opts:["Para romperlo después.","Para planificar la obra antes de hacerla definitiva.","Para venderlo caro.","No sirve para nada."], correct:1},
-{materia:"Artística", q:"¿Qué es el patrimonio cultural?", opts:["Solo edificios viejos.","Bienes materiales e inmateriales que una comunidad valora y quiere conservar.","Solo objetos caros.","Solo cosas del pasado que ya no se usan."], correct:1},
-{materia:"Artística", q:"¿Qué es el teatro?", opts:["Solo leer un libro.","Representar una historia con actores frente a un público.","Solo ver una película.","Solo escuchar música."], correct:1},
-{materia:"Artística", q:"¿Qué es el volumen en escultura?", opts:["El sonido alto.","El espacio que ocupa un objeto en tres dimensiones.","El peso liviano.","El color brillante."], correct:1},
-{materia:"Artística", q:"¿Qué es la textura visual?", opts:["Lo que se siente al tocar.","La apariencia de una superficie que parece tener relieve pero es lisa.","Solo el color.","El tamaño de la obra."], correct:1},
-{materia:"Prácticas del Lenguaje", q:"¿Qué es un sustantivo propio?", opts:["Nombra a una persona o lugar de forma particular y lleva mayúscula.","Nombra cosas en general.","Es una acción.","Es una cualidad."], correct:0},
-{materia:"Prácticas del Lenguaje", q:"¿Qué es un verbo?", opts:["Una palabra que indica acción, estado o proceso.","Una palabra que nombra un objeto.","Una palabra que describe un color.","Una palabra que une oraciones."], correct:0},
-{materia:"Prácticas del Lenguaje", q:"¿Cuál es la sílaba tónica?", opts:["La primera sílaba.","La que suena más fuerte.","La última siempre.","La que tiene dos vocales."], correct:1},
-{materia:"Prácticas del Lenguaje", q:"¿Qué es una rima?", opts:["La repetición de sonidos al final de los versos.","Una palabra larga.","Una oración corta.","Un dibujo."], correct:0},
-{materia:"Prácticas del Lenguaje", q:"¿Qué es un adjetivo?", opts:["Palabra que describe cualidades del sustantivo.","Palabra que indica acción.","Palabra que reemplaza al sustantivo.","Palabra que indica lugar."], correct:0},
-{materia:"Prácticas del Lenguaje", q:"¿Qué diferencia hay entre cuento y novela?", opts:["No hay diferencia.","El cuento es más breve y tiene pocos personajes, la novela es más extensa.","La novela es más corta.","Ambos son poesías."], correct:1},
-{materia:"Prácticas del Lenguaje", q:"¿Para qué sirven los signos de interrogación?", opts:["Para gritar.","Para hacer una pregunta.","Para terminar una historia.","Para separar palabras."], correct:1},
-{materia:"Prácticas del Lenguaje", q:"¿Qué es el narrador?", opts:["La persona que escribe el libro.","Quien cuenta la historia dentro del relato.","Un personaje secundario.","El que dibuja."], correct:1},
-{materia:"Prácticas del Lenguaje", q:"¿Qué es una];
-function getCls(m){m=m.toLowerCase();if(m.includes('matem'))return{h:'m-Matematica',bg:'bg-Matematica'};if(m.includes('naturales'))return{h:'m-Ciencias',bg:'bg-Ciencias'};if(m.includes('sociales'))return{h:'m-Sociales',bg:'bg-Sociales'};if(m.includes('art'))return{h:'m-Artistica',bg:'bg-Artistica'};return{h:'m-Lengua',bg:'bg-Lengua'};}
-let idx=0,time=25,timerInt=null,score=0,answered=false;
-function dots(){let c=document.getElementById('dots');c.innerHTML='';for(let i=0;i<preguntas.length;i++){let d=document.createElement('div');d.className='dot '+(i<idx?'done':(i==idx?'active':''));c.appendChild(d);}}
-function render(){answered=false;let p=preguntas[idx];let cls=getCls(p.materia);document.getElementById('bodyBg').className=cls.bg;document.getElementById('qHeader').className='q-header '+cls.h;document.getElementById('materiaLabel').innerText=p.materia+' - '+(idx+1);document.getElementById('qTitle').innerText=p.materia.toUpperCase()+' - PREGUNTA '+(idx+1);document.getElementById('qText').innerText=p.q;document.getElementById('progress').innerText=(idx+1)+'/'+preguntas.length;let cont=document.getElementById('options');cont.innerHTML='';p.opts.forEach((o,i)=>{let b=document.createElement('button');b.innerHTML=String.fromCharCode(65+i)+'. '+o;b.onclick=()=>check(i,b);cont.appendChild(b);});document.getElementById('nextBtn').style.display='none';dots();time=25;document.getElementById('time').innerText=time;clearInterval(timerInt);timerInt=setInterval(()=>{time--;document.getElementById('time').innerText=time;if(time<=0){clearInterval(timerInt);if(!answered)lock();}},1000);}
-function check(i,btn){if(answered)return;answered=true;clearInterval(timerInt);let corr=preguntas[idx].correct;let all=document.querySelectorAll('#options button');all.forEach(b=>b.disabled=true);if(i==corr){btn.classList.add('correct');score++;}else{btn.classList.add('wrong');all[corr].classList.add('correct');}document.getElementById('nextBtn').style.display='block';}
-function lock(){answered=true;let all=document.querySelectorAll('#options button');all.forEach(b=>b.disabled=true);let corr=preguntas[idx].correct;if(all[corr])all[corr].classList.add('correct');document.getElementById('nextBtn').style.display='block';}
-function nextQ(){idx++;if(idx>=preguntas.length){clearInterval(timerInt);let pct=Math.round(score/preguntas.length*100);let msg=pct>=80?'¡Excelente! 🌟':pct>=60?'¡Muy bien! 👏':pct>=40?'¡Buen intento! 💪':'¡A seguir! 📚';document.querySelector('.main-card').innerHTML='<div style="text-align:center;padding:24px"><h2 style="color:#4C1D95">'+msg+'</h2><p style="margin:14px 0;font-weight:800;font-size:18px;color:#4C1D95">Puntaje: '+score+' / '+preguntas.length+' ('+pct+'%)</p><button onclick="location.reload()" style="margin-top:16px;background:#7C3AED;color:white;border:none;padding:12px 24px;border-radius:999px;font-weight:900;width:100%">Jugar de nuevo</button></div>';return;}render();}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRIVIA AFTE 2026</title>
+<style>
+body{margin:0;font-family:Arial;background:#2d0a5e;color:white;min-height:100vh;display:flex;justify-content:center;padding:15px}
+.card{background:white;color:#222;border-radius:20px;padding:20px;max-width:500px;width:100%;margin-top:20px;border:4px solid #ffd700}
+h1{color:#ffd700;text-align:center;margin:0;font-size:26px}
+.sub{color:#ffd700;text-align:center;font-size:14px;margin-bottom:15px}
+.q{background:#6a1b9a;color:white;padding:12px;border-radius:12px;text-align:center;margin-bottom:12px;font-weight:bold}
+.opts{display:grid;gap:10px}
+.opt{background:#f3f3f3;border:2px solid #ddd;padding:12px;border-radius:10px;cursor:pointer}
+.opt:hover{background:#e1bee7}
+.bar{height:8px;background:#eee;border-radius:10px;overflow:hidden;margin:10px 0}
+.bar div{height:100%;background:#00c853;width:100%;transition:width 1s}
+.score{text-align:center;margin-top:10px;font-size:13px;color:#666}
+.btn{background:#ffd700;border:none;padding:12px 20px;border-radius:10px;font-weight:bold;cursor:pointer;width:100%;margin-top:10px}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>⭐ TRIVIA AFTE 2026</h1>
+<div class="sub">50 preguntas - EES N°15</div>
+<div id="game"></div>
+</div>
+<script>
+const qs=[
+["Matemática","¿15% de 200?",["25","30","35","20"],1],
+["Matemática","¿Raíz de 144?",["11","12","13","14"],1],
+["Matemática","¿7x8?",["54","56","64","58"],1],
+["Historia","¿Revolución de Mayo?",["1806","1810","1816","1820"],1],
+["Geografía","¿Capital Argentina?",["Córdoba","Buenos Aires","Rosario","La Plata"],1],
+["Lengua","Sinónimo de alegre",["Triste","Contento","Enojado","Cansado"],1],
+["Ciencias","¿Planetas sistema solar?",["7","8","9","10"],1],
+["AFTE","¿Qué significa AFTE?",["Arte","Administración Formación Trabajo Empleo","Agronomía","Ninguna"],1],
+["AFTE","¿Qué se muestra en Muestra Anual?",["Proyectos","Exámenes","Deportes","Nada"],0],
+["Matemática","¿60+60+60?",["120","180","90","360"],1]
+];
+for(let i=10;i<50;i++){qs.push(["General",`Pregunta ${i+1}: ¿Respuesta correcta?`,["A","B (Correcta)","C","D"],1])}
+let idx=0,pts=0,time=25,t;
+function render(){
+if(idx>=qs.length){document.getElementById('game').innerHTML=`<h2 style='text-align:center'>¡Terminaste! 🏆</h2><p style='text-align:center'>Puntaje: ${pts}/50</p><button class='btn' onclick='location.reload()'>Jugar de nuevo</button>`;return}
+let q=qs[idx];
+document.getElementById('game').innerHTML=`<div class='q'>${q[0]} - ${idx+1}/50<br>${q[1]}</div><div class='bar'><div id='b'></div></div><div class='opts'>${q[2].map((o,i)=>`<div class='opt' onclick='ans(${i})'>${String.fromCharCode(65+i)}. ${o}</div>`).join('')}</div><div class='score'>Puntos: ${pts} | Tiempo: <span id='tm'>25</span>s</div>`;
+time=25;clearInterval(t);t=setInterval(()=>{time--;document.getElementById('tm').textContent=time;document.getElementById('b').style.width=time/25*100+'%';if(time<=0)ans(-1)},1000);
+}
+function ans(i){clearInterval(t);if(i===qs[idx][3])pts++;idx++;render();}
 render();
-</script></body></html>
+</script>
+</body>
+</html>
