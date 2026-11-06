@@ -37,7 +37,14 @@ const qs=[
 ["AFTE","¿Que se muestra en Muestra?",["Proyectos","Examenes","Deportes","Nada"],0],
 ["Matematica","¿60+60+60?",["120","180","90","360"],1]
 ];
-for(let i=10;i<50;i++){qs.push(["General","Pregunta "+(i+1),["A","B (Correcta)","C","D"],1])}
+for(let i=10;i<50;i++){
+qs.push([
+"General",
+"Pregunta "+(i+1),
+["A","B","C","D"],
+1
+]);
+}
 let idx=0,pts=0,tm=25,t;
 function render(){
 if(idx>=qs.length){
