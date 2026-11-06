@@ -6,16 +6,14 @@
 <title>TRIVIA AFTE 2026</title>
 <style>
 body{margin:0;font-family:Arial;background:#2d0a5e;display:flex;justify-content:center;padding:15px}
-.card{background:white;color:#222;border-radius:20px;padding:20px;max-width:500px;width:100%;border:4px solid #ffd700}
-h1{color:#4a148c;text-align:center;margin:0;font-size:24px}
+.card{background:#fff;border-radius:20px;padding:20px;max-width:500px;width:100%;border:4px solid #ffd700}
+h1{color:#4a148c;text-align:center;margin:0;font-size:22px}
 .sub{color:#6a1b9a;text-align:center;font-weight:bold;margin-bottom:15px}
-.q{background:#6a1b9a;color:white;padding:14px;border-radius:12px;text-align:center;margin-bottom:12px;font-weight:bold}
-.opts{display:grid;gap:10px}
-.opt{background:#f3f3f3;border:2px solid #ddd;padding:12px;border-radius:10px;cursor:pointer}
+.q{background:#6a1b9a;color:#fff;padding:14px;border-radius:12px;text-align:center;margin-bottom:12px;font-weight:bold}
+.opt{background:#f3f3f3;border:2px solid #ddd;padding:12px;border-radius:10px;margin-bottom:8px;cursor:pointer}
 .bar{height:10px;background:#eee;border-radius:10px;overflow:hidden;margin:10px 0}
 .bar div{height:100%;background:#00c853;width:100%}
 .score{text-align:center;color:#666;font-size:13px;margin-top:10px}
-.btn{background:#ffd700;border:none;padding:14px;border-radius:10px;font-weight:bold;width:100%;margin-top:10px}
 </style>
 </head>
 <body>
@@ -25,7 +23,7 @@ h1{color:#4a148c;text-align:center;margin:0;font-size:24px}
 <div id="game"></div>
 </div>
 <script>
-const qs=[
+var qs=[
 ["Matematica","¿15% de 200?",["25","30","35","20"],1],
 ["Matematica","¿Raiz de 144?",["11","12","13","14"],1],
 ["Matematica","¿7x8?",["54","56","64","58"],1],
@@ -33,38 +31,35 @@ const qs=[
 ["Geografia","¿Capital Argentina?",["Cordoba","Buenos Aires","Rosario","La Plata"],1],
 ["Lengua","¿Sinonimo de alegre?",["Triste","Contento","Enojado","Cansado"],1],
 ["Ciencias","¿Planetas sistema solar?",["7","8","9","10"],1],
-["AFTE","¿Que significa AFTE?",["Arte","Adm Formacion Trabajo Empleo","Agronomia","Ninguna"],1],
+["AFTE","¿Que significa AFTE?",["Arte","Adm Form Trabajo Empleo","Agronomia","Ninguna"],1],
 ["AFTE","¿Que se muestra en Muestra?",["Proyectos","Examenes","Deportes","Nada"],0],
 ["Matematica","¿60+60+60?",["120","180","90","360"],1]
 ];
-for(let i=10;i<50;i++){
-qs.push([
-"General",
-"Pregunta "+(i+1),
-["A","B","C","D"],
-1
-]);
-}
-let idx=0,pts=0,tm=25,t;
+for(var i=10;i<50;i++){qs.push(["General","Pregunta "+(i+1),["Opcion A","Opcion B","Opcion C","Opcion D"],1])}
+var idx=0,pts=0,tm=25,t;
 function render(){
-if(idx>=qs.length){
-document.getElementById('game').innerHTML='<h2 style="text-align:center">¡Terminaste! 🏆</h2><p style="text-align:center">Puntaje: '+pts+'/50</p><button class="btn" onclick="location.reload()">Jugar de nuevo</button>';
+if(idx>=50){
+document.getElementById('game').innerHTML='<h2 style="text-align:center">¡Terminaste! 🏆<br>'+pts+'/50</h2><button onclick="location.reload()" style="background:#ffd700;border:none;padding:14px;border-radius:10px;font-weight:bold;width:100%">Jugar de nuevo</button>';
 return;
 }
-let q=qs[idx];
-document.getElementById('game').innerHTML='<div class="q">'+q[0]+' - '+(idx+1)+'/50<br>'+q[1]+'</div><div class="bar"><div id="bar" style="width:'+tm/25*100+'%"></div></div><div class="opts">'+q[2].map((o,i)=>'<div class="opt" onclick="ans('+i+')">'+String.fromCharCode(65+i)+'. '+o+'</div>').join('')+'</div><div class="score">Puntos: '+pts+' | Tiempo: <span id="t">25</span>s</div>';
+var q=qs[idx];
+var html='<div class="q">'+q[0]+' - '+(idx+1)+'/50<br>'+q[1]+'</div>';
+html+='<div class="bar"><div id="bar"></div></div>';
+for(var j=0;j<4;j++){html+='<div class="opt" onclick="ans('+j+')">'+String.fromCharCode(65+j)+'. '+q[2][j]+'</div>'}
+html+='<div class="score">Puntos: '+pts+' | Tiempo: <span id="tm">25</span>s</div>';
+document.getElementById('game').innerHTML=html;
 tm=25;
 clearInterval(t);
 t=setInterval(function(){
 tm--;
-document.getElementById('t').textContent=tm;
+document.getElementById('tm').innerHTML=tm;
 document.getElementById('bar').style.width=tm/25*100+'%';
 if(tm<=0){ans(-1)}
 },1000);
 }
 function ans(i){
 clearInterval(t);
-if(i===qs[idx][3]){pts++}
+if(i==qs[idx][3]){pts++}
 idx++;
 render();
 }
